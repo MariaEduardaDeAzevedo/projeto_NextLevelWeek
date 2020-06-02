@@ -1,4 +1,4 @@
-# Next Level Week by Rocketseat
+# Next Level Week by Rocketseat - Ecoleta
 
 ### Links
 - [Dia 1](https://www.youtube.com/watch?time_continue=4601&v=MRSSdAAyMkw&feature=emb_logo)
