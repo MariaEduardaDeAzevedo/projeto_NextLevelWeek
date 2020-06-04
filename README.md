@@ -6,3 +6,5 @@
 - [Dia 2](https://www.youtube.com/watch?time_continue=7061&v=XEswWb5Ail8&feature=emb_logo)
 
 - [Dia 3](https://www.youtube.com/watch?time_continue=7940&v=KKtb0K0Ejcw&feature=emb_logo)
+
+- [Dia 4](https://www.youtube.com/watch?time_continue=4&v=xYeaHqpTo3Y&feature=emb_logo)
