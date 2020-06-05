@@ -154,11 +154,10 @@ const CreatePoint = () => {
         try {
             await api.post('points', data); //Cria novo point no banco de dados
             alert(`Ponto de coleta ${name} cadastrado com sucesso!`);
+            history.push("/");
         } catch {
             alert("Ops... :(\nAlgo deu errado ao realizar o cadastro,\nconfira se preencheu todos os campos e tente novamente.") //Exibe um alert caso não haja erros
         } 
-
-        history.push("/"); //Retorna pra a página inicial
     }
 
     return (
