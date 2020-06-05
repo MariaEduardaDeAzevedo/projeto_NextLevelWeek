@@ -72,7 +72,7 @@ const CreatePoint = () => {
         });
     }, []);
 
-    //Pegando UF selecionada
+    //Pegando cidades da UF selecionada
     useEffect(() => {
         if (selectedUF === '0') {
             return;
@@ -165,10 +165,18 @@ const CreatePoint = () => {
 
            <form onSubmit = { handleSubmit }>
                 <h1>Cadastro do ponto de coleta</h1>
+                <fieldset>
+                    <legend>
+                        <h2>Imagem</h2>
+                        <span>Carregue uma imagem que identifique o ponto de coleta</span>
+                    </legend>
+                    <input type="file"></input>
+                </fieldset>
 
                 <fieldset>
                     <legend>
                         <h2>Dados</h2>
+                        <span>Dados de contato e identificação do ponto</span>
                     </legend>
                     <div className="field">
                         <label htmlFor="name">Nome da entidade</label>
