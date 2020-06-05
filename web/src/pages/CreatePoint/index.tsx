@@ -7,6 +7,7 @@ import {Map, TileLayer, Marker} from 'react-leaflet'
 import { LeafletMouseEvent } from 'leaflet'
 import api from '../../services/api'
 import axios from 'axios';
+import DropZone from '../../components/Dropzone'
 
 /**
  * Componente da página de cadastro
@@ -45,7 +46,7 @@ const CreatePoint = () => {
         whatsapp: '',
     }) //Estado de envio de formulário
     const [selectedItems, setSelectedItems] = useState<number[]>([]); //Estado de itens selecionados
-
+    const [selectedFile, setSelectedFile] = useState<File>();
     const history = useHistory(); 
 
     //Pegando posição inicial no mapa
@@ -135,20 +136,27 @@ const CreatePoint = () => {
         //////////////////////////////////////
         const items = selectedItems; //Pega itens selecionados
 
-        const data = {
-            name,
-            email,
-            whatsapp,
-            city,
-            uf,
-            latitude,
-            longitude,
-            items
-        };
+        const data = new FormData();
 
-        await api.post('points', data); //Cria novo point no banco de dados
+        data.append('name', name);
+        data.append('email', email);
+        data.append('whatsapp', whatsapp);
+        data.append('city', city);
+        data.append('uf', uf);
+        data.append('latitude', String(latitude));
+        data.append('longitude', String(longitude));
+        data.append('items', items.join(','));
+        
+        if (selectedFile) {
+            data.append('image', selectedFile);
+        }
 
-        alert("Cadastro realizado com sucesso!") //Exibe um alert caso não haja erros
+        try {
+            await api.post('points', data); //Cria novo point no banco de dados
+            alert(`Ponto de coleta ${name} cadastrado com sucesso!`);
+        } catch {
+            alert("Ops... :(\nAlgo deu errado ao realizar o cadastro,\nconfira se preencheu todos os campos e tente novamente.") //Exibe um alert caso não haja erros
+        } 
 
         history.push("/"); //Retorna pra a página inicial
     }
@@ -169,8 +177,8 @@ const CreatePoint = () => {
                     <legend>
                         <h2>Imagem</h2>
                         <span>Carregue uma imagem que identifique o ponto de coleta</span>
+                        <DropZone onFileUploaded={setSelectedFile}/>
                     </legend>
-                    <input type="file"></input>
                 </fieldset>
 
                 <fieldset>
